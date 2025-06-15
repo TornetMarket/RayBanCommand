@@ -3,32 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-  <title>Ray-Ban Meta AI Glasses Control</title>
-  <meta name="description" content="Luxury, mobile-first control app for Ray-Ban Meta AI Glasses—AI, voice, camera, and speaker controls at your fingertips.">
+  <title>SUNSYNC –  AI Ray-Ban</title>
+  <meta name="description" content="SUNSYNC: The premium way to control, customize, and enhance your Ray-Ban Meta AI Glasses.">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #161a2e;
-      --glass-bg: rgba(28,33,54,0.97);
-      --glass-border: rgba(255,255,255,0.08);
-      --gold: #e8c26a;
-      --blue: #55b5fa;
-      --accent: #628bff;
-      --connected: #2fff90;
-      --danger: #ff5c5c;
-      --text: #f4f6fd;
-      --secondary: #b0b8cc;
-      --panel-radius: 1.2em;
-      --shadow: 0 4px 28px rgba(20, 25, 40, 0.19);
-      --blur: 28px;
-      --footer-bg: #171c30;
+      --bg: #151312;
+      --glass-bg: rgba(32, 24, 16, 0.98);
+      --glass-border: rgba(215, 177, 100, 0.19);
+      --primary: #e8cb92;                /* Sand gold */
+      --accent: #ef4342;                 /* Ray-Ban red */
+      --accent-light: #f7ece3;           /* Cream */
+      --secondary: #9e8260;              /* Warm brown */
+      --text: #fffdf7;
+      --panel-radius: 1.19em;
+      --shadow: 0 4px 22px rgba(44, 29, 12, 0.15);
+      --connected: #41d775;
+      --danger: #ef4342;
+      --footer-bg: #18130f;
       --max-width: 430px;
       --header-h: 3.6em;
       --mobile-vpad: 1.1em;
+      --focus-glow: 0 0 0 2px #ef434266;
     }
     html, body {
       margin: 0; padding: 0;
-      background: linear-gradient(139deg, #161a2e 0%, #222c4b 100%);
+      background: linear-gradient(140deg, #151312 0%, #3a2915 100%);
       color: var(--text);
       font-family: 'Inter', Arial, sans-serif;
       min-height: 100vh;
@@ -40,26 +40,26 @@
     body.loaded .splash {opacity: 0; pointer-events: none; transition: opacity 1s;}
     .splash {
       position: fixed; inset: 0; z-index: 99;
-      background: linear-gradient(120deg, #161c30 0%, #232b49 100%);
+      background: linear-gradient(120deg, #151312 0%, #2e200d 100%);
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
-      gap: 2.1em;
+      gap: 2em;
       transition: opacity 1s;
     }
     .splash-logo {
-      font-size: 2.1em;
+      font-size: 2.12em;
       font-weight: 900;
-      color: var(--gold);
+      color: var(--primary);
       letter-spacing: 0.02em;
-      text-shadow: 0 2px 20px #0009;
-      max-width: 96vw;
+      text-shadow: 0 2px 22px #0008;
+      max-width: 95vw;
       text-align: center;
       line-height: 1.12em;
       word-break: break-word;
     }
     .splash-logo span {
-      font-size: 1.12em;
-      background: linear-gradient(90deg, var(--gold) 4%, var(--blue) 95%);
+      font-size: 1.1em;
+      background: linear-gradient(90deg, var(--primary) 15%, var(--accent) 90%);
       -webkit-background-clip: text; background-clip: text;
       -webkit-text-fill-color: transparent; text-fill-color: transparent;
       font-weight: 900;
@@ -67,20 +67,21 @@
     }
     .splash-tag {
       font-size: 1.06em; font-weight: 400;
-      color: var(--secondary); letter-spacing: 0.03em;
-      margin-top: 0.7em;
+      color: var(--accent-light); letter-spacing: 0.03em;
+      margin-top: 0.68em;
+      text-shadow: 0 1px 10px #32210866;
     }
     .splash-bar {
-      width: 155px; max-width: 80vw;
+      width: 165px; max-width: 80vw;
       height: 8px; background: var(--glass-border);
       border-radius: 6px; overflow: hidden;
-      margin-top: 1.1em;
+      margin-top: 1em;
     }
     .splash-bar-inner {
       width: 0; height: 100%;
-      background: linear-gradient(90deg, var(--blue), var(--gold), var(--accent));
+      background: linear-gradient(90deg, var(--accent), var(--primary), var(--accent-light));
       border-radius: 6px;
-      animation: splash-load 1.7s linear forwards;
+      animation: splash-load 1.5s linear forwards;
     }
     @keyframes splash-load {to { width: 100%; }}
 
@@ -95,36 +96,33 @@
       z-index: 1;
     }
 
-   /* --- HEADER (Mobile Optimized Status/Connection Panel) --- */
+    /* --- HEADER (Mobile Optimized Status/Connection Panel) --- */
     .status-row {
       width: 100vw;
       max-width: var(--max-width);
       margin: 0 auto;
       height: var(--header-h);
-      padding: 0.3em 0.13em 0.28em 0.85em;  /* Key: left padding to 0.85em */
       display: flex;
       align-items: center;
-      background: rgba(20,27,46,0.94);
-      border-bottom: 1.1px solid var(--glass-border);
-      backdrop-filter: blur(13px);
+      background: rgba(32,25,17,0.98);
+      border-bottom: 1.2px solid var(--glass-border);
+      backdrop-filter: blur(15px);
       box-sizing: border-box;
       gap: 0.7em;
       user-select: none;
       position: sticky; top: 0; z-index: 80;
+      padding-left: 1.1em;
     }
-
     .glasses-img {
       width: 38px;
       height: 25px;
       object-fit: cover;
       border-radius: 0.39em;
-      box-shadow: 0 2px 13px #1116;
-      background: #181f2e;
-      margin-left: 0;        /* always zero, let status-row handle left gap */
-      margin-right: 1em;     /* nice space between image and text */
+      box-shadow: 0 2px 13px #24150066;
+      background: #1c130a;
+      margin-right: 1.2em;
       flex-shrink: 0;
     }
-
     .status-main {
       display: flex;
       flex-direction: column;
@@ -136,12 +134,11 @@
       gap: 0.12em;
       align-items: flex-start;
       text-align: left;
-      margin-left: 0;        /* No extra shift, let .glasses-img margin handle space */
+      margin-left: 0.2em;
     }
-
     .glasses-title {
       font-weight: 900;
-      color: var(--gold);
+      color: var(--primary);
       font-size: 1em;
       letter-spacing: 0.01em;
       line-height: 1.15em;
@@ -149,22 +146,23 @@
       text-overflow: ellipsis;
       overflow: hidden;
       max-width: 100%;
+      text-shadow: 0 1px 7px #e6d1a260;
     }
     .status-indicators {
       display: flex;
       align-items: center;
       gap: 0.52em;
       font-size: 0.98em;
-      color: var(--secondary);
-      margin-top: 0.03em;
+      color: var(--accent-light);
+      margin-top: 0.02em;
       margin-bottom: 0.01em;
-      padding-left: 0.25em;  /* Only the dot gets space! */
+      padding-left: 0.18em;
     }
     .status-dot {
       width: 10px; height: 10px; border-radius: 50%;
-      background: radial-gradient(circle at 60% 35%, #a0ffd4, var(--connected) 80%);
-      box-shadow: 0 0 8px 2px var(--connected), 0 0 2px #fff7;
-      animation: pulse-connected 1.3s infinite;
+      background: radial-gradient(circle at 60% 35%, #c9ffe0, var(--connected) 80%);
+      box-shadow: 0 0 8px 3px var(--connected), 0 0 2px #fff7;
+      animation: pulse-connected 1.2s infinite;
       flex-shrink: 0;
     }
     @keyframes pulse-connected {
@@ -172,256 +170,62 @@
       70%  { box-shadow: 0 0 13px 4.4px var(--connected), 0 0 5px #fff7; }
       100% { box-shadow: 0 0 7px 1.2px var(--connected), 0 0 2px #fff7; }
     }
-    @media (max-width: 500px) {
-      .panel, .container, .hero {padding-left: 0.04em; padding-right: 0.04em;}
-      .status-row {padding-left: 0.7em !important;} /* keep enough padding */
-      .splash-logo {font-size: 1.13em;}
-      .footer-logos svg {height: 0.81em;}
+    @media (max-width: 430px) {
+      .container { max-width: 100vw; }
+      .status-row { max-width: 100vw; }
+      .glasses-img { margin-right: 0.47em; }
+      .status-main { max-width: 77vw; }
+      .glasses-title { font-size: 0.97em; }
     }
     @media (max-width: 350px) {
-      .splash-logo {font-size: 0.93em;}
-      .panel, .container, .hero {padding-left: 0.01em; padding-right: 0.01em;}
-      .status-row {padding-left: 0.5em !important;}
+      .status-main { max-width: 63vw; }
+      .glasses-title { font-size: 0.91em; }
     }
 
-
-    /* HERO */
-    .hero {
-      margin: 0 auto 1.18em auto;
-      padding: var(--mobile-vpad) 0.22em 0.1em 0.22em;
-      max-width: var(--max-width);
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      gap: 1.08em;
-      align-items: center;
-    }
-    .hero .tagline {
-      color: var(--secondary);
-      font-size: 1.09em;
-      font-weight: 500;
-      letter-spacing: 0.01em;
-      margin-bottom: 0.7em;
-      margin-top: 0.14em;
-    }
-    .cta {
-      background: linear-gradient(90deg, var(--gold) 60%, var(--blue) 100%);
-      color: #161c2e;
-      padding: 0.69em 2em;
-      font-weight: 900;
-      border-radius: 2em;
-      font-size: 1.07em;
-      box-shadow: 0 2px 18px #0d153066;
-      border: none;
-      outline: none;
-      cursor: pointer;
-      transition: background 0.18s, transform 0.16s;
-      margin-bottom: 0.11em;
-      text-shadow: 0 1.3px 6px #e8c26a17;
-    }
-    .cta:hover {
-      background: linear-gradient(90deg, var(--blue), var(--gold) 100%);
-      transform: translateY(-1px) scale(1.013);
-    }
-
-    /* Panel (Control Panel Tabs) */
-    .panel {
-      width: 100vw;
-      max-width: var(--max-width);
-      margin: 0 auto 2em auto;
-      background: var(--glass-bg);
-      border-radius: var(--panel-radius);
-      box-shadow: var(--shadow);
-      border: 1.3px solid var(--glass-border);
-      backdrop-filter: blur(var(--blur));
-      display: flex;
-      flex-direction: column;
-      gap: 1.18em;
-      padding: 1.08em 0.6em 1.6em 0.6em;
-      box-sizing: border-box;
-      margin-bottom: 2.8em;
-    }
-    .tabs {
-      display: flex;
-      gap: 0.1em;
-      margin-bottom: 0.72em;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .tab {
-      background: none; border: none; outline: none;
-      color: var(--secondary); font-size: 0.97em;
-      font-weight: 700; padding: 0.63em 1.16em;
-      border-radius: 1.1em 1.1em 0 0;
-      cursor: pointer; border-bottom: 2px solid transparent;
-      margin-bottom: -2px;
-      transition: color 0.13s, background 0.12s;
-    }
-    .tab.active {
-      color: var(--gold);
-      background: linear-gradient(90deg, #1a2036 80%, #232d4e 100%);
-      border-bottom: 2px solid var(--gold);
-    }
-    .tab-content {display: none;}
-    .tab-content.active {display: block; animation: fadein 0.28s;}
-    @keyframes fadein {from{opacity:0;} to{opacity:1;}}
-    .cp-section {
-      display: flex;
-      flex-direction: column;
-      gap: 0.95em;
-    }
-    .cp-card {
-      background: linear-gradient(133deg, #202742a7 60%, #23305f56 100%);
-      border: 1px solid var(--glass-border);
-      border-radius: 0.79em;
-      padding: 1em 0.7em 0.7em 0.7em;
-      box-shadow: 0 2px 8px #1217271b;
-      margin-bottom: 0.46em;
-    }
-    .cp-card .cp-title {
-      font-size: 1.04em; color: var(--gold); font-weight: 900;
-      margin-bottom: 0.33em; letter-spacing: 0.01em;
-      display: flex; align-items: center; gap: 0.3em;
-    }
-    .switch {
-      display: inline-flex; align-items: center;
-      cursor: pointer; user-select: none; gap: 0.47em;
-      margin-top: 0.48em;
-    }
-    .switch input[type="checkbox"] {
-      appearance: none;
-      width: 28px; height: 16px;
-      background: #232a4a;
-      border-radius: 10px;
-      border: 1px solid #3854b7;
-      box-shadow: 0 1px 5px #0d15302a;
-      transition: background 0.18s;
-      position: relative;
-    }
-    .switch input[type="checkbox"]:checked {
-      background: linear-gradient(90deg, var(--blue), var(--gold));
-      border-color: var(--gold);
-    }
-    .switch input[type="checkbox"]::before {
-      content: '';
-      position: absolute; left: 2px; top: 2px;
-      width: 11px; height: 11px;
-      background: #fff; border-radius: 50%;
-      transition: transform 0.18s;
-      box-shadow: 0 1px 3px #2224;
-    }
-    .switch input[type="checkbox"]:checked::before {
-      transform: translateX(10px);
-      background: var(--gold);
-      box-shadow: 0 2px 7px var(--gold);
-    }
-    .slider {
-      width: 100%;
-      accent-color: var(--blue);
-      margin-top: 0.44em;
-      margin-bottom: 0.13em;
-      height: 16px;
-    }
-    .preset-group {
-      display: flex; gap: 0.28em; margin-bottom: 0.1em;
-    }
-    .preset-btn {
-      border: none;
-      background: linear-gradient(90deg, #28335c, #233051 80%);
-      color: var(--text); font-weight: 700;
-      border-radius: 0.8em; padding: 0.31em 0.93em;
-      font-size: 1em; cursor: pointer;
-      box-shadow: 0 1.5px 5px #181d2d16;
-      transition: background 0.13s, color 0.13s, transform 0.13s;
-    }
-    .preset-btn.active, .preset-btn:hover {
-      background: linear-gradient(90deg, var(--gold), var(--blue) 90%);
-      color: #181d2d;
-      transform: scale(1.03);
-    }
-    .voice-list {
-      list-style: none; padding: 0; margin: 0.18em 0 0 0;
-      color: var(--secondary); font-size: 1em; max-height: 70px; overflow-y: auto;
-    }
-    .voice-list li {display: flex; align-items: center; gap: 0.6em; padding: 0.11em 0;}
-    .voice-remove {
-      border: none; background: none; color: var(--danger); font-size: 1em; cursor: pointer; margin-left: 0.08em;
-      transition: color 0.14s;
-    }
-    .voice-remove:hover {color: #fff;}
-
-    /* Footer */
-    .footer {
-      background: var(--footer-bg); color: var(--secondary);
-      text-align: center; padding: 1.4em 0.2em 0.7em 0.2em;
-      font-size: 0.97em; border-top: 1.1px solid var(--glass-border);
-      margin-top: 2.3em; letter-spacing: 0.01em;
-      display: flex; flex-direction: column; align-items: center; gap: 0.55em;
-    }
-    .footer-logos {display: flex; gap: 1em; align-items: center; justify-content: center;}
-    .footer-logos svg {height: 1em; width: auto; opacity: 0.96;}
-    .footer-links {margin-top: 0.18em; display: flex; gap: 1em; justify-content: center; font-size: 0.93em;}
-    .footer-links a {color: var(--secondary); text-decoration: none; transition: color 0.13s;}
-    .footer-links a:hover {color: var(--gold); text-decoration: underline;}
-    .footer-socials {margin-top: 0.18em; display: flex; gap: 0.5em; justify-content: center;}
-    .footer-socials a {color: var(--blue); font-size: 1.08em; opacity: 0.83; transition: color 0.13s, opacity 0.13s, transform 0.13s;}
-    .footer-socials a:hover {color: var(--gold); opacity: 1; transform: scale(1.07);}
-    @media (max-width: 500px) {
-      .panel, .container, .hero, .status-row {padding-left: 0.04em; padding-right: 0.04em;}
-      .splash-logo {font-size: 1.13em;}
-      .footer-logos svg {height: 0.81em;}
-    }
-    @media (max-width: 350px) {
-      .splash-logo {font-size: 0.93em;}
-      .panel, .container, .hero, .status-row {padding-left: 0.01em; padding-right: 0.01em;}
-    }
-    ::-webkit-scrollbar {width: 7px; background: #22274a;}
-    ::-webkit-scrollbar-thumb {background: #37458a; border-radius: 5px;}
-    ::selection {background: var(--gold); color: #181d2d;}
-
-    /* --- Connected Device Panel (new) --- */
+    /* --- Connected Device Panel --- */
     .connected-panel {
       background: var(--glass-bg);
-      border: 1.1px solid var(--glass-border);
+      border: 1.15px solid var(--glass-border);
       border-radius: var(--panel-radius);
       box-shadow: var(--shadow);
-      backdrop-filter: blur(var(--blur));
+      backdrop-filter: blur(21px);
       width: 100vw;
       max-width: var(--max-width);
-      margin: 1em auto 1.5em auto;
-      padding: 0.8em 1em;
+      margin: 1em auto 1.6em auto;
+      padding: 0.9em 1.1em;
       display: flex;
       align-items: center;
-      gap: 0.8em;
+      gap: 1em;
       box-sizing: border-box;
     }
     .connected-glasses-img {
-      height: 50px;
+      height: 54px;
       width: auto;
-      border-radius: 0.4em;
-      box-shadow: 0 2px 13px #1116;
-      background: #181f2e;
+      border-radius: 0.48em;
+      box-shadow: 0 2px 12px #22130b44;
+      background: #1b140d;
       flex-shrink: 0;
     }
     .device-info {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 0.3em;
+      gap: 0.33em;
     }
     .device-name {
       font-weight: 900;
-      color: var(--gold);
-      font-size: 1em;
+      color: var(--primary);
+      font-size: 1.01em;
       letter-spacing: 0.01em;
-      line-height: 1.2em;
+      line-height: 1.22em;
+      text-shadow: 0 1px 7px #e6d1a247;
     }
     .device-stats {
       display: flex;
       align-items: center;
-      gap: 1.2em;
+      gap: 1.3em;
       font-size: 0.98em;
-      color: var(--secondary);
+      color: var(--accent-light);
     }
     .battery-status {
       display: flex;
@@ -432,9 +236,10 @@
       display: inline-block;
       width: 24px;
       height: 12px;
-      margin-right: 0.3em;
-      border: 1.5px solid var(--secondary);
+      margin-right: 0.29em;
+      border: 1.5px solid var(--accent-light);
       border-radius: 2px;
+      background: #3a2915;
     }
     .battery-icon::after {
       content: '';
@@ -443,7 +248,7 @@
       right: -5px;
       width: 3px;
       height: 6px;
-      background: var(--secondary);
+      background: var(--accent-light);
       border-radius: 1px;
     }
     .battery-level {
@@ -453,16 +258,231 @@
       background: var(--connected);
       border-radius: 1px;
     }
-    .battery-text { /* optional: if needed to style percentage text separately */ }
-    .storage-status { }
+    .storage-status { font-size: 0.99em; }
+
+    /* HERO (Tagline + subtitle + description) */
+    .hero {
+      margin: 0 auto 1.19em auto;
+      padding: var(--mobile-vpad) 0.2em 0.1em 0.2em;
+      max-width: var(--max-width);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 0.77em;
+      align-items: center;
+    }
+    .tagline {
+      color: var(--accent);
+      font-size: 1.21em;
+      font-weight: 800;
+      letter-spacing: 0.025em;
+      margin-bottom: 0.13em;
+      margin-top: 0.14em;
+      text-shadow: 0 2px 9px #ef43423b, 0 1px 3px #0005;
+    }
+    .hero-sub {
+      color: var(--primary);
+      font-size: 1.04em;
+      font-weight: 600;
+      letter-spacing: 0.012em;
+      margin-bottom: 0.22em;
+      opacity: 0.93;
+      text-shadow: 0 2px 8px #efdba26a;
+    }
+    .hero-desc {
+      color: var(--accent-light);
+      font-size: 0.98em;
+      font-weight: 400;
+      letter-spacing: 0.006em;
+      margin-bottom: 0.19em;
+      opacity: 0.82;
+    }
+    .cta {
+      background: linear-gradient(90deg, var(--accent) 30%, var(--primary) 100%);
+      color: #151312;
+      padding: 0.74em 2em;
+      font-weight: 900;
+      border-radius: 2em;
+      font-size: 1.12em;
+      box-shadow: 0 2px 18px #ef434218;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      letter-spacing: 0.03em;
+      text-shadow: 0 1.3px 7px #ef434214;
+      transition: background 0.18s, transform 0.15s, box-shadow 0.16s;
+      margin-bottom: 0.13em;
+    }
+    .cta:hover, .preset-btn.active, .preset-btn:focus {
+      background: linear-gradient(90deg, var(--primary) 40%, var(--accent) 100%);
+      color: #151312;
+      box-shadow: 0 6px 15px #ef434235;
+      transform: translateY(-1.5px) scale(1.032);
+      outline: none;
+    }
+
+    /* Panel (Control Panel Tabs) */
+    .panel {
+      width: 100vw;
+      max-width: var(--max-width);
+      margin: 0 auto 2em auto;
+      background: var(--glass-bg);
+      border-radius: var(--panel-radius);
+      box-shadow: var(--shadow);
+      border: 1.2px solid var(--glass-border);
+      backdrop-filter: blur(var(--blur));
+      display: flex;
+      flex-direction: column;
+      gap: 1.13em;
+      padding: 1.1em 0.8em 1.7em 0.8em;
+      box-sizing: border-box;
+      margin-bottom: 2.8em;
+    }
+    .tabs {
+      display: flex;
+      gap: 0.1em;
+      margin-bottom: 0.85em;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .tab {
+      background: none; border: none; outline: none;
+      color: var(--secondary); font-size: 0.97em;
+      font-weight: 700; padding: 0.61em 1.11em;
+      border-radius: 1.1em 1.1em 0 0;
+      cursor: pointer; border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      transition: color 0.13s, background 0.12s;
+    }
+    .tab.active {
+      color: var(--accent);
+      background: linear-gradient(90deg, #201d1b 80%, #3d261c 100%);
+      border-bottom: 2.3px solid var(--accent);
+      font-weight: 900;
+      text-shadow: 0 2px 7px #ef434247;
+    }
+    .tab-content {display: none;}
+    .tab-content.active {display: block; animation: fadein 0.28s;}
+    @keyframes fadein {from{opacity:0;} to{opacity:1;}}
+    .cp-section {
+      display: flex;
+      flex-direction: column;
+      gap: 0.91em;
+    }
+    .cp-card {
+      background: linear-gradient(133deg, #231b11 60%, #2f231d56 100%);
+      border: 1.1px solid var(--glass-border);
+      border-radius: 0.84em;
+      padding: 1em 0.8em 0.7em 0.8em;
+      box-shadow: 0 2px 8px #23161122;
+      margin-bottom: 0.49em;
+    }
+    .cp-card .cp-title {
+      font-size: 1.04em; color: var(--primary); font-weight: 900;
+      margin-bottom: 0.33em; letter-spacing: 0.01em;
+      display: flex; align-items: center; gap: 0.3em;
+      text-shadow: 0 1px 7px #efdba246;
+    }
+    .switch {
+      display: inline-flex; align-items: center;
+      cursor: pointer; user-select: none; gap: 0.5em;
+      margin-top: 0.43em;
+    }
+    .switch input[type="checkbox"] {
+      appearance: none;
+      width: 29px; height: 16px;
+      background: #20190e;
+      border-radius: 10px;
+      border: 1px solid #ae9363;
+      box-shadow: 0 1px 5px #18120221;
+      transition: background 0.18s;
+      position: relative;
+    }
+    .switch input[type="checkbox"]:checked {
+      background: linear-gradient(90deg, var(--accent), var(--primary));
+      border-color: var(--accent);
+    }
+    .switch input[type="checkbox"]::before {
+      content: '';
+      position: absolute; left: 2px; top: 2px;
+      width: 11px; height: 11px;
+      background: #fff; border-radius: 50%;
+      transition: transform 0.18s;
+      box-shadow: 0 1px 3px #2224;
+    }
+    .switch input[type="checkbox"]:checked::before {
+      transform: translateX(12px);
+      background: var(--accent);
+      box-shadow: 0 2px 7px var(--accent);
+    }
+    .slider {
+      width: 100%;
+      accent-color: var(--accent);
+      margin-top: 0.44em;
+      margin-bottom: 0.15em;
+      height: 15px;
+    }
+    .preset-group {
+      display: flex; gap: 0.28em; margin-bottom: 0.1em;
+    }
+    .preset-btn {
+      border: none;
+      background: linear-gradient(90deg, #3b2514 60%, #7d5547 100%);
+      color: var(--accent-light); font-weight: 700;
+      border-radius: 0.8em; padding: 0.32em 0.97em;
+      font-size: 1em; cursor: pointer;
+      box-shadow: 0 1.5px 5px #23161122;
+      transition: background 0.13s, color 0.13s, transform 0.13s;
+      outline: none;
+    }
+    .preset-btn:focus {outline: none;}
+    .voice-list {
+      list-style: none; padding: 0; margin: 0.18em 0 0 0;
+      color: var(--accent-light); font-size: 1em; max-height: 70px; overflow-y: auto;
+    }
+    .voice-list li {display: flex; align-items: center; gap: 0.6em; padding: 0.11em 0;}
+    .voice-remove {
+      border: none; background: none; color: var(--danger); font-size: 1em; cursor: pointer; margin-left: 0.08em;
+      transition: color 0.14s;
+    }
+    .voice-remove:hover {color: #fff;}
+
+    /* Footer */
+    .footer {
+      background: var(--footer-bg); color: #cbb490;
+      text-align: center; padding: 1.4em 0.2em 0.7em 0.2em;
+      font-size: 0.98em; border-top: 1.1px solid var(--glass-border);
+      margin-top: 2.2em; letter-spacing: 0.01em;
+      display: flex; flex-direction: column; align-items: center; gap: 0.56em;
+    }
+    .footer-logos {display: flex; gap: 1em; align-items: center; justify-content: center;}
+    .footer-logos svg {height: 1em; width: auto; opacity: 0.96;}
+    .footer-links {margin-top: 0.18em; display: flex; gap: 1em; justify-content: center; font-size: 0.93em;}
+    .footer-links a {color: #e8cb92; text-decoration: none; transition: color 0.13s;}
+    .footer-links a:hover {color: var(--accent); text-decoration: underline;}
+    .footer-socials {margin-top: 0.18em; display: flex; gap: 0.5em; justify-content: center;}
+    .footer-socials a {color: var(--accent); font-size: 1.08em; opacity: 0.83; transition: color 0.13s, opacity 0.13s, transform 0.13s;}
+    .footer-socials a:hover {color: var(--primary); opacity: 1; transform: scale(1.07);}
+    @media (max-width: 500px) {
+      .panel, .container, .hero, .status-row {padding-left: 0.04em; padding-right: 0.04em;}
+      .splash-logo {font-size: 1.13em;}
+      .footer-logos svg {height: 0.81em;}
+    }
+    @media (max-width: 350px) {
+      .splash-logo {font-size: 0.93em;}
+      .panel, .container, .hero, .status-row {padding-left: 0.01em; padding-right: 0.01em;}
+    }
+    ::-webkit-scrollbar {width: 7px; background: #222018;}
+    ::-webkit-scrollbar-thumb {background: #e8cb92;}
+    ::selection {background: var(--accent); color: #fff;}
   </style>
 </head>
 <body>
   <!-- Splash Screen -->
   <div class="splash">
     <div class="splash-logo">
-      <span>Ray-Ban Command</span>
-      <div class="splash-tag">Smart Control Suite</div>
+      <span>SUNSYNC</span>
+      <div class="splash-tag">Ray-Ban Meta AI Glasses Suite</div>
     </div>
     <div class="splash-bar">
       <div class="splash-bar-inner"></div>
@@ -471,7 +491,6 @@
   <div class="container">
     <!-- Status Bar & Connection Panel -->
     <div class="status-row">
-      <!-- Replaced top bar photo with local glasses.png -->
       <div class="status-main">
         <div class="glasses-title">Ray-Ban Meta AI Glasses</div>
         <div class="status-indicators">
@@ -480,12 +499,11 @@
         </div>
       </div>
     </div>
-    
-    <!-- Connected Device Panel (Shown when glasses are connected) -->
+    <!-- Connected Device Panel -->
     <div class="connected-panel">
       <img class="connected-glasses-img" src="sunglasses.avif" alt="Glasses Image">
       <div class="device-info">
-        <div class="device-name">Ray-Ban Meta AI Glasses</div>
+        <div class="device-name">Richie's Bans</div>
         <div class="device-stats">
           <span class="battery-status">
             <span class="battery-icon"><span class="battery-level"></span></span>
@@ -495,19 +513,12 @@
         </div>
       </div>
     </div>
-    
-    <!-- HERO: Tagline and CTA -->
+    <!-- HERO: Tagline, subtitle, description, CTA -->
     <section class="hero">
-      <div class="tagline">
-        Unleash Visionary Control.
-        <div style="font-size:0.97em; color:var(--gold); margin-top:0.32em; font-weight:600; letter-spacing:0.01em;">
-          The ultimate fusion of style, intelligence, and freedom.
-        </div>
-      </div>
-      <div style="margin:0.9em 0 0.2em 0; color:var(--secondary); font-size:1.05em; font-weight:500;">
-        Take command of your Ray-Bans like never before.<br>
-        <span style="color:var(--gold); font-weight:700;">Your Life. Your Style. Your AI.</span>
-      </div>
+      <div class="tagline">Total Vision. Total Power.</div>
+      <div class="hero-sub">Luxury AI control for the world’s most iconic smart eyewear.</div>
+      <div class="hero-desc">Take charge of your style, your privacy, and your possibilities—instantly, with SUNSYNC.<br>
+      <em style="color:var(--accent); font-style:normal; font-weight:700;">Control your Ray-Bans. Command your world.</em></div>
       <button class="cta" id="getStartedBtn">Get Started</button>
     </section>
     <!-- Control Panel -->
@@ -522,20 +533,19 @@
         <div class="cp-section">
           <div class="cp-card">
             <div class="cp-title">AI Model</div>
-            <select id="aiModel" style="width:100%;padding:0.54em;font-size:0.99em;border-radius:8px;background:#1d223c;color:#fff;border:1px solid #2a3357;">
-              <option>Numen AI (Default) - Dev By Richie</option>
+            <select id="aiModel" style="width:100%;padding:0.54em;font-size:0.99em;border-radius:8px;background:#1d1611;color:#fff;border:1px solid #8f7352;">
+              <option>Numen AI (Default)</option>
               <option>Meta AI</option>
               <option>OpenAI GPT</option>
               <option>Google Gemini</option>
               <option>Custom (API Key)</option>
             </select>
-            <input id="apiKey" type="text" placeholder="API Key (if custom)" style="display:none;margin-top:0.5em;width:100%;padding:0.44em;border-radius:7px;background:#232848;color:#fff;border:1px solid #384374;">
-            <!-- TODO: Connect selected AI to glasses via API -->
+            <input id="apiKey" type="text" placeholder="API Key (if custom)" style="display:none;margin-top:0.5em;width:100%;padding:0.44em;border-radius:7px;background:#221a13;color:#fff;border:1px solid #ae9363;">
           </div>
           <div class="cp-card">
             <div class="cp-title">Voice Commands</div>
             <form id="voiceForm" autocomplete="off" style="display:flex;gap:0.3em;">
-              <input type="text" id="voiceInput" placeholder="Add command (e.g. 'Take a picture')" style="flex:1;padding:0.4em;border-radius:7px;background:#232848;color:#fff;border:1px solid #384374;">
+              <input type="text" id="voiceInput" placeholder="Add command (e.g. 'Take a picture')" style="flex:1;padding:0.4em;border-radius:7px;background:#221a13;color:#fff;border:1px solid #ae9363;">
               <button type="submit" class="preset-btn">Add</button>
             </form>
             <ul class="voice-list" id="voiceList">
@@ -546,7 +556,7 @@
           <div class="cp-card">
             <div class="cp-title">Voice Changer &amp; Recognition</div>
             <label for="voiceChanger">Select Voice:</label>
-            <select id="voiceChanger" style="width:100%;padding:0.4em;font-size:0.99em;border-radius:8px;background:#1d223c;color:#fff;border:1px solid #2a3357;margin-bottom:0.3em;">
+            <select id="voiceChanger" style="width:100%;padding:0.4em;font-size:0.99em;border-radius:8px;background:#1d1611;color:#fff;border:1px solid #8f7352;margin-bottom:0.3em;">
               <option>Natural (Default)</option>
               <option>Male Deep</option>
               <option>Female Clear</option>
@@ -562,10 +572,9 @@
           </div>
         </div>
       </section>
-     <!-- Camera -->
+      <!-- Camera -->
       <section class="tab-content" data-tab="camera">
         <div class="cp-section">
-
           <div class="cp-card">
             <div class="cp-title">Frontside LED</div>
             <div class="switch">
@@ -573,7 +582,16 @@
               <span>LED On</span>
             </div>
           </div>
-
+          <div class="cp-card">
+            <div class="cp-title">Flashing LED</div>
+            <div class="switch">
+              <input type="checkbox" id="flashingLed" checked>
+              <span>Enable Flashing</span>
+            </div>
+            <div style="font-size:0.96em;color:#bfa874;margin-top:0.3em;line-height:1.35em;">
+              <span style="opacity:0.87;">Optimizes CPU performance when using AI.<br>Flashes when the glasses are “thinking..”</span>
+            </div>
+          </div>
           <div class="cp-card">
             <div class="cp-title">Camera Power</div>
             <div class="switch">
@@ -581,66 +599,33 @@
               <span>Camera On</span>
             </div>
             <button class="preset-btn" id="takeSnapshotBtn" style="margin-top:0.7em;">Take Snapshot</button>
-            <div id="snapshotStatus" style="color:var(--blue);font-size:1em;margin-top:0.5em;display:none;">📸 Snapshot taken!</div>
-            <!-- TODO: Connect to actual camera APIs -->
+            <div id="snapshotStatus" style="color:var(--accent);font-size:1em;margin-top:0.5em;display:none;">📸 Snapshot taken!</div>
           </div>
-
           <div class="cp-card">
-            <div class="cp-title">Recording Mode</div>
-            <select id="recordMode" style="width:100%;padding:0.45em;font-size:0.99em;border-radius:8px;background:#1d223c;color:#fff;border:1px solid #2a3357;">
-              <option>Video</option>
-              <option>Photo</option>
-              <option>Timelapse</option>
-              <option>Slow Motion</option>
-            </select>
-          </div>
-
-          <div class="cp-card">
-            <div class="cp-title">Lens &amp; Filters</div>
-            <select id="cameraFilter" style="width:100%;padding:0.45em;font-size:0.99em;border-radius:8px;background:#1d223c;color:#fff;border:1px solid #2a3357;">
-              <option>Standard (No Filter)</option>
-              <option>Black &amp; White</option>
-              <option>Vivid Colors</option>
-              <option>Retro Film</option>
+            <div class="cp-title">Lens Filter</div>
+            <select id="lensFilter" style="width:100%;padding:0.44em;font-size:0.98em;border-radius:7px;background:#201b13;color:#fff;border:1px solid #ef434260;margin-bottom:0.2em;">
+              <option>Standard</option>
               <option>Night Vision</option>
+              <option>Vivid Color</option>
+              <option>Vintage</option>
+              <option>Sepia</option>
+              <option>Black &amp; White</option>
             </select>
-            <div style="margin-top:0.8em;">
-              <div class="switch">
-                <input type="checkbox" id="hdrToggle" checked>
-                <span>HDR Mode</span>
-              </div>
+            <div class="switch" style="margin-top:0.18em;">
+              <input type="checkbox" id="autoFocusToggle" checked>
+              <span>Auto Focus</span>
             </div>
-            <div class="switch" style="margin-top:0.25em;">
+            <div class="switch" style="margin-top:0.11em;">
               <input type="checkbox" id="stabilizationToggle" checked>
-              <span>Image Stabilization</span>
+              <span>Stabilization</span>
             </div>
+            <button class="preset-btn" style="margin-top:0.41em;">Open Gallery</button>
           </div>
-
-          <div class="cp-card">
-            <div class="cp-title">Auto-Upload</div>
-            <div class="switch">
-              <input type="checkbox" id="autoUploadToggle">
-              <span>Auto-upload to Cloud</span>
-            </div>
-            <small style="color:var(--secondary);opacity:0.7;">Your snapshots will be instantly backed up.</small>
-          </div>
-
-          <div class="cp-card">
-            <div class="cp-title">Privacy Shutter</div>
-            <div class="switch">
-              <input type="checkbox" id="privacyShutterToggle">
-              <span>Engage Privacy Shutter</span>
-            </div>
-            <small style="color:var(--danger);opacity:0.8;">When ON, camera is physically blocked.</small>
-          </div>
-
         </div>
       </section>
-
       <!-- Speaker -->
       <section class="tab-content" data-tab="speaker">
         <div class="cp-section">
-
           <div class="cp-card">
             <div class="cp-title">Volume &amp; Presets</div>
             <input type="range" min="0" max="100" value="60" id="volumeSlider" class="slider">
@@ -657,76 +642,39 @@
               </div>
             </div>
           </div>
-
           <div class="cp-card">
-            <div class="cp-title">Spatial Audio</div>
-            <div class="switch">
-              <input type="checkbox" id="spatialAudioToggle" checked>
-              <span>Enable Spatial Audio</span>
-            </div>
-            <small style="color:var(--secondary);opacity:0.75;">Immersive 3D sound for a true surround experience.</small>
-          </div>
-
-          <div class="cp-card">
-            <div class="cp-title">Voice Profile</div>
-            <select id="voiceProfile" style="width:100%;padding:0.45em;font-size:0.99em;border-radius:8px;background:#1d223c;color:#fff;border:1px solid #2a3357;">
-              <option>Classic (Balanced)</option>
-              <option>Bass Boost</option>
+            <div class="cp-title">EQ Preset</div>
+            <select id="eqPreset" style="width:100%;padding:0.44em;font-size:0.98em;border-radius:7px;background:#201b13;color:#fff;border:1px solid #ef434260;margin-bottom:0.2em;">
+              <option>Balanced (Default)</option>
               <option>Treble Boost</option>
-              <option>Podcast Clarity</option>
-              <option>Outdoor</option>
+              <option>Bass Boost</option>
+              <option>Podcast/Voice</option>
+              <option>Cinema Surround</option>
             </select>
           </div>
-
           <div class="cp-card">
-            <div class="cp-title">Personalized EQ</div>
-            <div style="margin-bottom:0.7em;">
-              <label>Bass</label>
-              <input type="range" min="0" max="100" value="50" id="bassSlider" class="slider">
-            </div>
-            <div style="margin-bottom:0.7em;">
-              <label>Mid</label>
-              <input type="range" min="0" max="100" value="50" id="midSlider" class="slider">
-            </div>
-            <div>
-              <label>Treble</label>
-              <input type="range" min="0" max="100" value="50" id="trebleSlider" class="slider">
-            </div>
-          </div>
-
-          <div class="cp-card">
-            <div class="cp-title">Transparency Mode</div>
+            <div class="cp-title">Ambient Mode</div>
             <div class="switch">
-              <input type="checkbox" id="transparencyToggle">
-              <span>Let Outside Sound In</span>
+              <input type="checkbox" id="ambientToggle">
+              <span>Let outside sound in</span>
             </div>
-            <small style="color:var(--secondary);opacity:0.75;">Blend environment with your music. Hear voices and ambient sound.</small>
-          </div>
-
-          <div class="cp-card">
-            <div class="cp-title">Smart Audio AI</div>
             <div class="switch">
-              <input type="checkbox" id="aiEnhanceToggle" checked>
-              <span>AI Enhance (Auto-adjust for calls, music, etc)</span>
+              <input type="checkbox" id="spatialAudioToggle">
+              <span>Spatial Audio</span>
             </div>
-            <small style="color:var(--secondary);opacity:0.75;">Adaptive audio for your context—work, gym, or chill.</small>
           </div>
-
         </div>
       </section>
-
     </main>
   </div>
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-logos">
-      <!-- Ray-Ban SVG -->
       <svg viewBox="0 0 106 40" fill="none" xmlns="http://www.w3.org/2000/svg">
         <text x="0" y="28" font-family="Arial Black, Arial, sans-serif" font-size="18" fill="#fff">Ray-Ban</text>
       </svg>
-      <!-- Meta SVG -->
       <svg width="22" height="22" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="90" cy="90" rx="80" ry="35" stroke="#50BFE6" stroke-width="13"/>
+        <ellipse cx="90" cy="90" rx="80" ry="35" stroke="#ef4342" stroke-width="13"/>
         <ellipse cx="90" cy="90" rx="44" ry="35" stroke="#fff" stroke-width="13"/>
       </svg>
     </div>
@@ -739,14 +687,14 @@
       <a href="https://www.instagram.com/rayban" target="_blank" rel="noopener"><svg width="18" height="18" fill="currentColor" viewBox="0 0 32 32"><circle cx="16" cy="16" r="10" stroke="#fff" stroke-width="2" fill="none"/><circle cx="24.5" cy="7.5" r="1.5"/><path d="M29.333 8.667a7.083 7.083 0 0 0-1.937-5.03A7.084 7.084 0 0 0 22.365 1.7C20.837.666 19.076.667 16 .667s-4.837 0-6.365 1.034A7.084 7.084 0 0 0 4.604 3.637 7.083 7.083 0 0 0 2.667 8.667C1.634 10.195 1.633 11.956 1.633 15.033s0 4.837 1.034 6.365a7.083 7.083 0 0 0 1.937 5.03A7.084 7.084 0 0 0 9.635 30.3C11.163 31.334 12.924 31.333 16 31.333s4.837 0 6.365-1.034a7.084 7.084 0 0 0 5.03-1.937 7.083 7.083 0 0 0 1.938-5.03c1.034-1.528 1.034-3.289 1.034-6.366s0-4.837-1.034-6.366z" fill="none" stroke="#fff" stroke-width="2"/></svg></a>
       <a href="https://www.facebook.com/RayBan" target="_blank" rel="noopener"><svg width="18" height="18" fill="currentColor" viewBox="0 0 32 32"><path d="M29 0H3C1.344 0 0 1.344 0 3v26c0 1.656 1.344 3 3 3h13V20h-4v-5h4v-3.333C16 7.72 18.552 5.667 21.877 5.667c1.466 0 2.724.11 3.092.158v3.59h-2.12c-1.663 0-1.988.791-1.988 1.949V15h4l-.521 5h-3.479v12h6c1.656 0 3-1.344 3-3V3c0-1.656-1.344-3-3-3z" fill="#fff"/></svg></a>
     </div>
-    <div style="margin-top:0.6em;font-size:0.91em;opacity:0.67;">&copy; 2025 Ray-Ban &amp; Meta. Crafted for the future.</div>
+    <div style="margin-top:0.6em;font-size:0.91em;opacity:0.69;">&copy; 2025 SUNSYNC. Not affiliated with Ray-Ban or Meta.</div>
   </footer>
   <script>
     // Splash screen
     setTimeout(() => {
       document.body.classList.add('loaded');
       setTimeout(() => { document.querySelector('.splash').style.display = 'none'; }, 1000);
-    }, 1300);
+    }, 1200);
 
     // Get Started
     document.getElementById('getStartedBtn').onclick = () => {
@@ -789,8 +737,8 @@
     });
 
     // Camera controls (demo)
-    document.getElementById('frontLed').onchange = () => {/* TODO: connect LED toggle */};
-    document.getElementById('cameraToggle').onchange = () => {/* TODO: connect camera on/off */};
+    document.getElementById('frontLed').onchange = () => {};
+    document.getElementById('cameraToggle').onchange = () => {};
     document.getElementById('takeSnapshotBtn').onclick = () => {
       const status = document.getElementById('snapshotStatus');
       status.style.display = 'block';
@@ -820,20 +768,6 @@
       else document.getElementById('controlPanel').style.margin = "0 auto 2em auto";
     });
     // TODO: All real device integrations need secure API/auth
-
-    // Camera Feedback Examples
-    document.getElementById('privacyShutterToggle').onchange = function() {
-      if(this.checked) {
-        alert('Privacy shutter engaged. Camera is physically blocked.');
-      }
-    };
-    document.getElementById('autoUploadToggle').onchange = function() {
-      if(this.checked) {
-        alert('Auto-upload enabled! All new photos will be sent to your cloud.');
-      }
-    };
-    // TODO: Hook up other features to real APIs
-
   </script>
 </body>
 </html>
